@@ -7,8 +7,9 @@ let timer = 0;
 let timer_aux = 0;
 
 $(document).ready(function () {
-    start_timer("#clock span");
+    //start_timer("#clock span");
     const connectButton = $('#connectButton');
+    const restartButton = $('#restartButton');
     let port;
     let reader;
     let writer;
@@ -39,7 +40,7 @@ $(document).ready(function () {
                     { usbVendorId: 0x2341, usbProductId: 0x0001 }
                 ]
              });
-            await port.open({ baudRate: 115200 });
+            await port.open({ baudRate: 19200 });
 
             console.log('Conectado a ' + port.getInfo().usbProductId + ' / ' + port.getInfo().usbVendorId);
             logMessage('Conectado al puerto serie.', 'success');
@@ -66,11 +67,11 @@ $(document).ready(function () {
                     logMessage('Lector liberado.', 'warning');
                     break;
                 }
-                const receivedData = decoder.decode(value);
-                process_data(receivedData);
-                if (laps >= 2 || stops >= 2) {
+                if (laps < 2 || stops < 2) {
                     // disconnectSerial(); // Desconectar si se alcanzan los límites
-                    connectButton.prop('disabled', false);
+                    const receivedData = decoder.decode(value);
+                    process_data(receivedData);
+                } else {
                     break;
                 }
 
@@ -159,12 +160,36 @@ function proccess_timer(display, timer) {
 
     let displayMinutes = minutes < 10 ? "0" + minutes : minutes;
     let displaySeconds = seconds < 10 ? "0" + seconds : seconds;
-    let displayMilliseconds = (milliseconds / 10) < 10 ? "0" + (milliseconds / 10) : (milliseconds / 10);
+    let displayMilliseconds = (Math.trunc(milliseconds / 10)) < 10 ? "0" + (Math.trunc(milliseconds / 10)) : (Math.trunc(milliseconds / 10));
 
     $(display).text(displayMinutes + ":" + displaySeconds + "." + displayMilliseconds);
 }
 
 function process_data(data) {
+    if (data.includes("Stop") || data.includes("top")) {
+        stops++;
+        console.log("Stop count:", stops);
+
+        if (stops == MAX_STOPS) {
+            $("#clock span").text("00:00.00");
+            for (let i = 0; i < MAX_LAPS; i++) {
+                $($(".lap-data .time")[i]).text("--:--.--");
+                $($(".lap-data .total")[i]).text("--:--.--");
+            }
+
+            stops = 0;
+            laps = 0;
+            lap_time = 0;
+            timer = 0;
+            timer_aux = 0;
+            return;
+        }
+    }
+
+    if (laps == MAX_LAPS) {
+        return;
+    }
+
     if (data.includes("Start") || data.includes("art")) {
         stops = 0;
         laps = 0;
@@ -173,13 +198,13 @@ function process_data(data) {
         timer_aux = 0;
         
         $("#clock span").text("00:00.00");
-        console.log("Start");
+        return;
     }
     
-    if (data.includes("Lap count") || data.includes("count")) {
+    if (data.includes("Lap") || data.includes("La") || data.includes("ap")) {
         proccess_timer($(".lap-data .time")[laps], lap_time);
         proccess_timer($(".lap-data .total")[laps], timer);
-        
+
         laps++;
         if (laps == MAX_LAPS) {
             proccess_timer($("#clock span"), timer);
@@ -188,24 +213,61 @@ function process_data(data) {
         lap_time = 0;
     }
     
-    if (stops == MAX_STOPS) {
-        $("#clock span").text("00:00.00");
-        return;
-    }
-    
     if (laps < MAX_LAPS) {
-        timer += 10;
-        timer_aux += 10;
-        lap_time += 10;
+        timer += 4.1;
+        timer_aux += 4.1;
+        lap_time += 4.1;
 
         if (timer_aux >= 50) {
             proccess_timer($("#clock span"), timer);
             timer_aux = 0;
         }
     }	
-
-    if (data.includes("Stop") || data.includes("top")) {
-        stops++;
-        console.log("Stop count:", stops);
-    }
 }
+
+const robots = [
+    {
+        name: "Robot 1",
+        logo: ""
+    },
+    {
+        name: "Robot 1",
+        logo: ""
+    },
+    {
+        name: "Robot 1",
+        logo: ""
+    },
+    {
+        name: "Robot 1",
+        logo: ""
+    },
+    {
+        name: "Robot 1",
+        logo: ""
+    },
+    {
+        name: "Robot 1",
+        logo: ""
+    },
+    {
+        name: "Robot 1",
+        logo: ""
+    },
+    {
+        name: "Robot 1",
+        logo: ""
+    },
+    {
+        name: "Robot 1",
+        logo: ""
+    },
+    {
+        name: "Robot 1",
+        logo: ""
+    },
+    {
+        name: "Robot 1",
+        logo: ""
+    }
+];

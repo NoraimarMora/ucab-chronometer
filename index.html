@@ -71,6 +71,46 @@
                 </div>
             </div>
         </section>
+
+        <div class="modal fade" id="config-robot" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Selección del participante</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row align-items-center fields">
+                                    <div class="col-md-3">
+                                        <label for="robots" class="col-form-label">Robot</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <select id="robots" class="form-select">
+                                            <option value="0" selected>StormRunner</option>
+                                            <option value="1">Turb0</option>
+                                            <option value="2">Dragonforce</option>
+                                            <option value="3">Flash</option>
+                                            <option value="4">MOS Thunderbolt</option>
+                                            <option value="5">Mcqueen</option>
+                                            <option value="6">TurboRacer</option>
+                                            <option value="7">VELOCIRAPTOR</option>
+                                            <option value="8">Hoppy</option>
+                                            <option value="9">Hopebot</option>
+                                            <option value="10">Kratos</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="change-robot" type="button" class="btn btn-dark">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 
     <footer id="footer" class="bd-footer bg-body-tertiary py-md-3 text-center">
