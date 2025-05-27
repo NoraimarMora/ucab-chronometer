@@ -1,0 +1,91 @@
+@font-face {
+    font-family: 'DS Digital';
+    src: url('../fonts/ds_digital.TTF') format('truetype');
+}
+
+#navbar, #main {
+    margin-bottom: 1.5em;
+}
+
+#navbar .container {
+    justify-content: center;
+}
+
+#navbarNav {
+    justify-content: end;
+}
+
+#navbar .navbar-brand {
+    margin: 0;
+}
+
+#logo {
+    width: 200px;
+}
+
+#school-logo {
+    width: 100%;
+}
+
+#robot-name {
+    display: flex;
+    align-items: center;
+    font-size: x-large;
+}
+
+#controls {
+    display: flex;
+    align-items: center;
+}
+
+#clock {
+    font-family: 'DS Digital', sans-serif;
+    font-size: 11.95em;
+    color: #F71F20;
+}
+
+.lap-data {
+    margin-bottom: 0.78em;
+}
+
+.lap-data span {
+    font-size: 1.25em;
+}
+
+.lap {
+    text-align: right;
+}
+
+.time {
+    text-align: left;
+}
+
+#footer {
+    color: var(--bs-secondary-color);
+}
+
+#author {
+    font-weight: bold;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (min-width: 1600px) {
+    #navbar, #main {
+        margin-bottom: 3em;
+    }
+
+    #logo {
+        width: 250px;
+    }
+
+    .section {
+        margin-bottom: 30px;
+    }
+
+    #clock {
+        font-size: 15.5em;
+    }
+}
