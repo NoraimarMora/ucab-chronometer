@@ -7,9 +7,7 @@ let timer = 0;
 let timer_aux = 0;
 
 $(document).ready(function () {
-    //start_timer("#clock span");
     const connectButton = $('#connectButton');
-    const restartButton = $('#restartButton');
     let port;
     let reader;
     let writer;
@@ -110,47 +108,13 @@ $(document).ready(function () {
             disconnectSerial();
         }
     });
+
+    $('#change-robot').on('click', function () {
+        let robot = parseInt($('#robots').val());
+        $('#robot-name').text(robots[robot].name);
+        $('#school-logo').attr('src', robots[robot].logo);
+    });
 });
-
-function start_timer(display) {
-    let minutes = 0;
-    let seconds = 0;
-    let milliseconds = 0;
-
-    $(display).text("00:00.00");
-
-    return setInterval(function () {
-        /*milliseconds += 50;
-
-        if (milliseconds >= 1000) {
-            milliseconds = 0;
-            seconds++;
-            if (seconds >= 60) {
-                seconds = 0;
-                minutes++;
-            }
-        }
-
-        let displayMinutes = minutes < 10 ? "0" + minutes : minutes;
-        let displaySeconds = seconds < 10 ? "0" + seconds : seconds;
-        let displayMilliseconds = (milliseconds / 10) < 10 ? "0" + (milliseconds / 10) : (milliseconds / 10);
-
-        $(display).text(displayMinutes + ":" + displaySeconds + "." + displayMilliseconds);*/
-        if (laps >= 2 || stops >= 2) {
-            console.log("Stopping timer due to laps or stops limit reached.");
-                    return;
-                }
-        if (milliseconds == 0) 
-            process_data("Start"); // Simular el procesamiento de datos para pruebas
-        else if (milliseconds == 6030)
-            process_data("Lap count"); // Simular el procesamiento de datos para pruebas
-        else if (milliseconds == 11520)
-            process_data("Lap count"); // Simular el procesamiento de datos para pruebas
-        else 
-            process_data(""); // Simular el procesamiento de datos para pruebas
-        milliseconds += 10;
-    }, 10);
-}
 
 function proccess_timer(display, timer) {
     let milliseconds = timer % 1000;
@@ -227,47 +191,47 @@ function process_data(data) {
 
 const robots = [
     {
-        name: "Robot 1",
-        logo: ""
+        name: "StormRunner",
+        logo: "img/logo-nazaret.png"
     },
     {
-        name: "Robot 1",
-        logo: ""
+        name: "Turb0",
+        logo: "img/logo-loyola.png"
     },
     {
-        name: "Robot 1",
-        logo: ""
+        name: "Dragonforce",
+        logo: "img/logo-montesacro.png"
     },
     {
-        name: "Robot 1",
-        logo: ""
+        name: "Flash",
+        logo: "img/logo-montesacro.png"
     },
     {
-        name: "Robot 1",
-        logo: ""
+        name: "MOS Thunderbolt",
+        logo: "img/logo-cimos.png"
     },
     {
-        name: "Robot 1",
-        logo: ""
+        name: "Mcqueen",
+        logo: "img/logo-jesusobrero.png"
     },
     {
-        name: "Robot 1",
-        logo: ""
+        name: "TurboRacer",
+        logo: "img/logo-losproceres.png"
     },
     {
-        name: "Robot 1",
-        logo: ""
+        name: "VELOCIRAPTOR",
+        logo: "img/logo-lourdes.png"
     },
     {
-        name: "Robot 1",
-        logo: ""
+        name: "Hoppy",
+        logo: "img/logo-feyalegria.png"
     },
     {
-        name: "Robot 1",
-        logo: ""
+        name: "Hopebot",
+        logo: "img/logo-feyalegria.png"
     },
     {
-        name: "Robot 1",
-        logo: ""
+        name: "Kratos",
+        logo: "img/logo-feyalegria.png"
     }
 ];

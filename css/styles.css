@@ -23,6 +23,13 @@
     width: 200px;
 }
 
+.school-logo-container {
+    width: 62px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+}
+
 #school-logo {
     width: 100%;
 }
@@ -33,9 +40,14 @@
     font-size: x-large;
 }
 
+#robot-name:hover {
+    cursor: pointer;
+}
+
 #controls {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
 }
 
 #clock {
@@ -87,5 +99,12 @@
 
     #clock {
         font-size: 15.5em;
+    }
+
+    .school-logo-container {
+        width: 86px;
+        height: 86px;
+        display: flex;
+        align-items: center;
     }
 }

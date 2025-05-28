@@ -33,13 +33,13 @@
         </section>
         <section id="main" class="container">
             <div class="row section">
-                <div class="col-md-1">
+                <div class="col-md-1 school-logo-container">
                     <img id="school-logo" src="img/logo_ucab.png" alt="Logo" />
                 </div>
-                <div id="robot-name" class="col-md-10">
+                <div id="robot-name" class="col-md-3" data-bs-toggle="modal" data-bs-target="#config-robot">
                     <span>Robot</span>
                 </div>
-                <div id="controls" class="col-md-1">
+                <div id="controls" class="col-md-8">
                     <button id="connectButton" class="btn btn-dark">Conectar</button>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button id="change-robot" type="button" class="btn btn-dark">Aceptar</button>
+                            <button id="change-robot" type="button" class="btn btn-dark" data-bs-dismiss="modal">Aceptar</button>
                         </div>
                     </div>
                 </div>
